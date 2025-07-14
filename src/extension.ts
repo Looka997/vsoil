@@ -123,8 +123,13 @@ async function enterFolder() {
   }
 
   const oilUri = fileUri.with({ scheme: SCHEME });
+  await navigateTo(oilUri);
+}
+
+async function navigateTo(oilUri: vscode.Uri) {
   const doc = await vscode.workspace.openTextDocument(oilUri);
-  vscode.window.showTextDocument(doc, { preview: false });
+  vscode.window.showTextDocument(doc, { preview: true });
+  await vscode.commands.executeCommand("workbench.action.closeActiveEditor");
 }
 
 async function getFileType(

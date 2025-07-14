@@ -3,11 +3,14 @@ import { OilProvider } from "./OilProvider";
 import { enterFolder } from "./enterFolder";
 import { openFolder } from "./openFolder";
 import { getFileType, isOrLinksToDir, isOrLinksToFile } from "./helpers";
+import { rename } from "./rename";
+import { OperationsManager } from "./OperationsManager";
 
 export const SCHEME = "oil";
 
 export function activate(context: vscode.ExtensionContext) {
   const provider = new OilProvider();
+  const manager = new OperationsManager();
 
   context.subscriptions.push(
     vscode.workspace.registerTextDocumentContentProvider(SCHEME, provider)
@@ -23,7 +26,15 @@ export function activate(context: vscode.ExtensionContext) {
     openFolder
   );
 
-  context.subscriptions.push(enterFolderCommand, openCurrentFolderCommand);
+  const renameCommand = vscode.commands.registerCommand("vsoil.rename", () =>
+    rename(manager)
+  );
+
+  context.subscriptions.push(
+    enterFolderCommand,
+    openCurrentFolderCommand,
+    renameCommand
+  );
 
   const fileDecoration = vscode.window.createTextEditorDecorationType({
     gutterIconPath: context.asAbsolutePath("images/file-regular.svg"),

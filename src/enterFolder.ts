@@ -1,13 +1,15 @@
 import * as vscode from "vscode";
 import { SCHEME } from "./extension";
-import { getFileType, getSelectedEntry, isOrLinksToDir } from "./helpers";
+import {
+  getFileType,
+  getSelectedEntry,
+  isOrLinksToDir,
+  getCurrentVSoil,
+} from "./helpers";
 
 export async function enterFolder() {
-  const editor = vscode.window.activeTextEditor;
-  if (!editor || editor.document.uri.scheme !== SCHEME) {
-    vscode.window.showInformationMessage(
-      `This only works in a ${SCHEME}:// buffer.`
-    );
+  const editor = getCurrentVSoil();
+  if (!editor) {
     return;
   }
 

@@ -20,6 +20,10 @@
       {
         "command": "vsoil.enterFolder",
         "title": "VsOil: Enter selected folder"
+      },
+      {
+        "command": "vsoil.rename",
+        "title": "VsOil: Rename entry"
       }
     ],
     "keybindings": [
@@ -31,6 +35,11 @@
       {
         "key": "alt+enter",
         "command": "vsoil.enterFolder",
+        "when": "editorTextFocus && resourceScheme == oil"
+      },
+      {
+        "key": "alt+shift+r",
+        "command": "vsoil.rename",
         "when": "editorTextFocus && resourceScheme == oil"
       }
     ]

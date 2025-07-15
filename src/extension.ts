@@ -5,6 +5,7 @@ import { openFolder } from "./openFolder";
 import { getFileType, isOrLinksToDir, isOrLinksToFile } from "./helpers";
 import { rename } from "./rename";
 import { OperationsManager } from "./OperationsManager";
+import { applyOperations } from "./applyOperations";
 
 export const SCHEME = "oil";
 
@@ -30,10 +31,16 @@ export function activate(context: vscode.ExtensionContext) {
     rename(manager)
   );
 
+  const applyOperationsCommand = vscode.commands.registerCommand(
+    "vsoil.applyOperations",
+    () => applyOperations(manager, provider)
+  );
+
   context.subscriptions.push(
     enterFolderCommand,
     openCurrentFolderCommand,
-    renameCommand
+    renameCommand,
+    applyOperationsCommand
   );
 
   const fileDecoration = vscode.window.createTextEditorDecorationType({

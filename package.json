@@ -24,6 +24,10 @@
       {
         "command": "vsoil.rename",
         "title": "VsOil: Rename entry"
+      },
+      {
+        "command": "vsoil.applyOperations",
+        "title": "VsOil: Apply pending operations"
       }
     ],
     "keybindings": [
@@ -40,6 +44,11 @@
       {
         "key": "alt+shift+r",
         "command": "vsoil.rename",
+        "when": "editorTextFocus && resourceScheme == oil"
+      },
+      {
+        "key": "alt+shift+o",
+        "command": "vsoil.applyOperations",
         "when": "editorTextFocus && resourceScheme == oil"
       }
     ]

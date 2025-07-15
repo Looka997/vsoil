@@ -1,33 +1,40 @@
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
 
 export class OilProvider implements vscode.TextDocumentContentProvider {
-	async provideTextDocumentContent(uri: vscode.Uri): Promise<string> {
-		try {
-			const fileUri = vscode.Uri.file(uri.path);
-			const entries = await vscode.workspace.fs.readDirectory(fileUri);
-			const lines: string[] = [];
+  private _onDidChange = new vscode.EventEmitter<vscode.Uri>();
+  onDidChange = this._onDidChange.event;
 
-			addCurrentFolder(lines);
-			addParentFolder(fileUri, lines);
+  async provideTextDocumentContent(uri: vscode.Uri): Promise<string> {
+    try {
+      const fileUri = vscode.Uri.file(uri.path);
+      const entries = await vscode.workspace.fs.readDirectory(fileUri);
+      const lines: string[] = [];
 
-			for (const [name, type] of entries) {
-				lines.push(`${name}`);
-			}
+      addCurrentFolder(lines);
+      addParentFolder(fileUri, lines);
 
-			return lines.join('\n');
-		} catch (err) {
-			return `Error reading directory: ${err}`;
-		}
+      for (const [name, type] of entries) {
+        lines.push(`${name}`);
+      }
 
-		function addCurrentFolder(lines: string[]) {
-			lines.push('.');
-		}
+      return lines.join("\n");
+    } catch (err) {
+      return `Error reading directory: ${err}`;
+    }
 
-		function addParentFolder(fileUri: vscode.Uri, lines: string[]) {
-			const parent = vscode.Uri.joinPath(fileUri, '..');
-			if (parent.path !== fileUri.path) {
-				lines.push('..');
-			}
-		}
-	}
+    function addCurrentFolder(lines: string[]) {
+      lines.push(".");
+    }
+
+    function addParentFolder(fileUri: vscode.Uri, lines: string[]) {
+      const parent = vscode.Uri.joinPath(fileUri, "..");
+      if (parent.path !== fileUri.path) {
+        lines.push("..");
+      }
+    }
+  }
+
+  refresh(uri: vscode.Uri) {
+    this._onDidChange.fire(uri);
+  }
 }

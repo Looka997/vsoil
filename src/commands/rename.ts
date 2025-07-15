@@ -1,7 +1,7 @@
-import { getSelectedEntry, getCurrentVSoil } from "./helpers";
 import { Uri, window } from "vscode";
-import { OperationsManager } from "./OperationsManager";
-import { OperationType } from "./PendingOperation";
+import { getCurrentVSoil, getSelectedEntry } from "../helpers";
+import { OperationsManager } from "../OperationsManager";
+import { OperationType } from "../PendingOperation";
 
 export async function rename(manager: OperationsManager) {
   const editor = getCurrentVSoil();

@@ -1,11 +1,11 @@
 import * as vscode from "vscode";
 import { OilProvider } from "./OilProvider";
-import { enterFolder } from "./enterFolder";
-import { openFolder } from "./openFolder";
-import { getFileType, isOrLinksToDir, isOrLinksToFile } from "./helpers";
-import { rename } from "./rename";
 import { OperationsManager } from "./OperationsManager";
-import { applyOperations } from "./applyOperations";
+import { applyOperations } from "./commands/applyOperations";
+import { enterFolder } from "./commands/enterFolder";
+import { openFolder } from "./commands/openFolder";
+import { rename } from "./commands/rename";
+import { getFileType, isOrLinksToDir, isOrLinksToFile } from "./helpers";
 
 export const SCHEME = "oil";
 

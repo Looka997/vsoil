@@ -1,11 +1,11 @@
 import * as vscode from "vscode";
-import { SCHEME } from "./extension";
+import { SCHEME } from "../extension";
 import {
+  getCurrentVSoil,
   getFileType,
   getSelectedEntry,
   isOrLinksToDir,
-  getCurrentVSoil,
-} from "./helpers";
+} from "../helpers";
 
 export async function enterFolder() {
   const editor = getCurrentVSoil();

@@ -1,6 +1,6 @@
-import { getCurrentVSoil } from "./helpers";
-import { OilProvider } from "./OilProvider";
-import { OperationsManager } from "./OperationsManager";
+import { getCurrentVSoil } from "../helpers";
+import { OilProvider } from "../OilProvider";
+import { OperationsManager } from "../OperationsManager";
 
 export function applyOperations(
   manager: OperationsManager,

@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { SCHEME } from "./extension";
+import { SCHEME } from "../extension";
 
 export async function openFolder() {
   const activeEditor = vscode.window.activeTextEditor;

@@ -17,7 +17,9 @@ export async function rename(manager: OperationsManager) {
   if (!newName) {
     return;
   }
-  const destination = Uri.file(newName);
+
+  const newPath = `${currentFolder}/${newName}`;
+  const destination = Uri.file(newPath);
 
   manager.push({ type: OperationType.Rename, from: source, to: destination });
 }

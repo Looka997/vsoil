@@ -14,6 +14,14 @@
   "contributes": {
     "commands": [
       {
+        "command": "vsoil.createFile",
+        "title": "VsOil: Create new file"
+      },
+      {
+        "command": "vsoil.createFolder",
+        "title": "VsOil: Create new folder"
+      },
+      {
         "command": "vsoil.openFolder",
         "title": "VsOil: Open current folder"
       },
@@ -24,6 +32,14 @@
       {
         "command": "vsoil.rename",
         "title": "VsOil: Rename entry"
+      },
+      {
+        "command": "vsoil.markMoveSource",
+        "title": "VsOil: mark file or folder to be moved"
+      },
+      {
+        "command": "vsoil.markMoveDestination",
+        "title": "VsOil: mark destination of file or folder to be moved"
       },
       {
         "command": "vsoil.applyOperations",
@@ -44,6 +60,31 @@
       {
         "key": "alt+shift+r",
         "command": "vsoil.rename",
+        "when": "editorTextFocus && resourceScheme == oil"
+      },
+      {
+        "key": "alt+shift+r",
+        "command": "vsoil.rename",
+        "when": "editorTextFocus && resourceScheme == oil"
+      },
+      {
+        "key": "alt+shift+n",
+        "command": "vsoil.createFile",
+        "when": "editorTextFocus && resourceScheme == oil"
+      },
+      {
+        "key": "alt+shift+d",
+        "command": "vsoil.createFolder",
+        "when": "editorTextFocus && resourceScheme == oil"
+      },
+      {
+        "key": "alt+m",
+        "command": "vsoil.markMoveSource",
+        "when": "editorTextFocus && resourceScheme == oil"
+      },
+      {
+        "key": "alt+shift+m",
+        "command": "vsoil.markMoveDestination",
         "when": "editorTextFocus && resourceScheme == oil"
       },
       {

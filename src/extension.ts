@@ -2,7 +2,11 @@ import * as vscode from "vscode";
 import { OilProvider } from "./OilProvider";
 import { OperationsManager } from "./OperationsManager";
 import { applyOperations } from "./commands/applyOperations";
+import { createFile } from "./commands/createFile";
+import { createFolder } from "./commands/createFolder";
 import { enterFolder } from "./commands/enterFolder";
+import { markMoveDestination } from "./commands/markMoveDestination";
+import { markMoveSource } from "./commands/markMoveSource";
 import { openFolder } from "./commands/openFolder";
 import { rename } from "./commands/rename";
 import { getFileType, isOrLinksToDir, isOrLinksToFile } from "./helpers";
@@ -27,6 +31,26 @@ export function activate(context: vscode.ExtensionContext) {
     openFolder
   );
 
+  const createFolderCommand = vscode.commands.registerCommand(
+    "vsoil.createFolder",
+    () => createFolder(manager)
+  );
+
+  const createFileCommand = vscode.commands.registerCommand(
+    "vsoil.createFile",
+    () => createFile(manager)
+  );
+
+  const markMoveSourceCommand = vscode.commands.registerCommand(
+    "vsoil.markMoveSource",
+    () => markMoveSource(manager)
+  );
+
+  const markMoveDestinationCommand = vscode.commands.registerCommand(
+    "vsoil.markMoveDestination",
+    () => markMoveDestination(manager)
+  );
+
   const renameCommand = vscode.commands.registerCommand("vsoil.rename", () =>
     rename(manager)
   );
@@ -37,9 +61,13 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(
+    createFileCommand,
+    createFolderCommand,
     enterFolderCommand,
     openCurrentFolderCommand,
     renameCommand,
+    markMoveSourceCommand,
+    markMoveDestinationCommand,
     applyOperationsCommand
   );
 

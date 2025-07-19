@@ -1,7 +1,7 @@
-import { OperationType, PendingOperation } from "./PendingOperation";
 import { workspace } from "vscode";
+import { OperationType, PendingOperation } from "./PendingOperation";
 
-export class OperationsManager { 
+export class OperationsManager {
   private pendingOperations: PendingOperation[] = [];
 
   async applyOperations() {
@@ -9,7 +9,9 @@ export class OperationsManager {
       switch (operation.type) {
         case OperationType.Rename:
         case OperationType.Move:
-          await workspace.fs.rename(operation.from, operation.to);
+          await workspace.fs.rename(operation.from, operation.to, {
+            overwrite: true,
+          });
           break;
 
         case OperationType.Copy:
